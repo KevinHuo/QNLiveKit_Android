@@ -10,11 +10,9 @@ import android.view.View
 import android.view.WindowManager
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
-import com.pili.pldroid.player.PLOnVideoSizeChangedListener
 import com.pili.pldroid.player.widget.PLVideoView
 import com.qbcube.pkservice.QNPKService
 import com.qncube.chatservice.QNChatRoomService
-import com.qncube.chatservice.QNChatRoomServiceListener
 import com.qncube.danmakuservice.QNDanmakuService
 import com.qncube.linkmicservice.QNLinkMicService
 import com.qncube.liveroom_pullclient.QNLivePullClient
@@ -25,7 +23,6 @@ import com.qncube.roomservice.QNRoomService
 import com.qncube.rtcexcepion.RtcException
 import com.qncube.uikitcore.KitContext
 import com.qncube.uikitcore.activity.BaseFrameActivity
-import com.qncube.uikitcore.dialog.CommonTipDialog
 import com.qncube.uikitcore.ext.bg
 import com.qncube.uikitcore.view.CommonPagerAdapter
 import com.qncube.uikitcore.view.EmptyFragment

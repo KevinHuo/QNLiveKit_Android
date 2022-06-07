@@ -32,7 +32,7 @@ android {
 dependencies {
 
     api project(':liveroom-core')
-    api project(':1highlevlsdk:comp_player')
+    api project(':LibComponent:comp_player')
     api project(':service:roomservice')
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

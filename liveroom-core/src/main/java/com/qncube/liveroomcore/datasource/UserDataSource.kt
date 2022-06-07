@@ -11,7 +11,6 @@ import com.qncube.liveroomcore.QNLiveCallBack
 import com.qncube.liveroomcore.backGround
 import com.qncube.liveroomcore.getCode
 import com.qncube.liveroomcore.innermodel.InnerUser
-import com.qncube.liveroomcore.mode.QNLiveRoomInfo
 import com.qncube.liveroomcore.mode.QNLiveUser
 
 class UserDataSource {

@@ -1,7 +1,6 @@
 package com.qncube.uikitlinkmic
 
 import android.util.Log
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,6 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
-import com.niucube.qnrtcsdk.RoundTextureView
 import com.qiniu.droid.rtc.QNConnectionState
 import com.qiniu.droid.rtc.QNTextureView
 import com.qncube.linkmicservice.QNAnchorHostMicLinker
@@ -20,7 +18,6 @@ import com.qncube.linkmicservice.QNLinkMicService
 import com.qncube.linkmicservice.QNMicLinker
 import com.qncube.liveroomcore.*
 import com.qncube.uikitcore.*
-import com.qncube.uikitcore.ext.ViewUtil
 import kotlinx.android.synthetic.main.kit_view_linkers.view.*
 
 /**

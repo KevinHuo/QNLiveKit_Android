@@ -5,7 +5,6 @@ import com.nucube.rtclive.QNMicrophoneParams
 import com.qiniu.droid.rtc.QNAudioFrameListener
 import com.qiniu.droid.rtc.QNConnectionState
 import com.qiniu.droid.rtc.QNVideoFrameListener
-import com.qncube.liveroomcore.IPullPlayer
 import com.qncube.liveroomcore.QNLiveCallBack
 
 

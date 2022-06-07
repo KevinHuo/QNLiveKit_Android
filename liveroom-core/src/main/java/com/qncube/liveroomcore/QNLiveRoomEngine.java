@@ -6,7 +6,6 @@ import com.nucube.http.OKHttpService;
 import com.nucube.http.PageData;
 import com.qncube.liveroomcore.datasource.RoomDataSource;
 import com.qncube.liveroomcore.datasource.UserDataSource;
-import com.qncube.liveroomcore.innermodel.InnerUser;
 import com.qncube.liveroomcore.mode.QNCreateRoomParam;
 
 import com.qncube.liveroomcore.mode.QNLiveRoomInfo;

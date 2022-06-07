@@ -14,8 +14,10 @@ class QNLivePushClientImpl : QNLivePushClient {
     private val mQNLiveRoomContext by lazy { QNLiveRoomContext(this) }
     private var mQNPushClientListener: QNPushClientListener? = null
 
-    private var mCameraParams: QNCameraParams = QNCameraParams()
-    private var mQNMicrophoneParams: QNMicrophoneParams = QNMicrophoneParams()
+    private var mCameraParams: QNCameraParams =
+        QNCameraParams()
+    private var mQNMicrophoneParams: QNMicrophoneParams =
+        QNMicrophoneParams()
 
     //用于反射字段名字勿动
     private var mRtcLiveRoom: RtcLiveRoom? = null

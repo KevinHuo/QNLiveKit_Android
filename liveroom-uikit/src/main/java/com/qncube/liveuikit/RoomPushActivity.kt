@@ -24,17 +24,12 @@ import com.qncube.publicchatservice.QNPublicChatService
 import com.qncube.pushclient.QNLivePushClient
 import com.qncube.pushclient.QNPushClientListener
 import com.qncube.roomservice.QNRoomService
-import com.qncube.rtcexcepion.RtcException
 import com.qncube.uikitcore.KitContext
 import com.qncube.uikitcore.activity.BaseFrameActivity
-import com.qncube.uikitcore.ext.bg
 import com.qncube.uikitcore.ext.permission.PermissionAnywhere
 import com.qncube.uikitcore.view.CommonPagerAdapter
 import com.qncube.uikitcore.view.EmptyFragment
 import kotlinx.android.synthetic.main.activity_room_push.*
-import kotlin.coroutines.resume
-import kotlin.coroutines.resumeWithException
-import kotlin.coroutines.suspendCoroutine
 
 class RoomPushActivity : BaseFrameActivity() {
 

@@ -31,7 +31,7 @@ android {
 dependencies {
 
     api project(':liveroom-core')
-    api project(':libs:rtclive')
+    api project(':LibComponent:rtclive')
     api project(':service:roomservice')
 
     testImplementation 'junit:junit:4.13.2'
