@@ -75,6 +75,7 @@ class QNPKServiceImpl : QNPKService, BaseService() {
                     val mAppId = json.optString("appId")
                     val peerRoomName = json.optString("roomName")
 
+                    mPKDateSource.ackACKPk(mPKSessionTemp?.sessionId ?: "")
                     val destInfo1 = QNMediaRelayInfo(peerRoomName, pkOutline.relay_token)
                     configuration.addDestRoomInfo(destInfo1)
                     startMediaRelay(peerRoomName, room.mClient, configuration)
@@ -82,11 +83,7 @@ class QNPKServiceImpl : QNPKService, BaseService() {
                     //pk 接收方收到 邀请方
                     mPKSession = mPKSessionTemp
                     mPKSession?.status = PK_STATUS_OK
-                    try {
-                        mPKDateSource.ackACKPk(mPKSession?.sessionId ?: "")
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
+
                     try {
                         //群信号
                         RtmManager.rtmClient.sendChannelMsg(
@@ -482,14 +479,11 @@ class QNPKServiceImpl : QNPKService, BaseService() {
                 val mAppId = json.optString("appId")
                 val peerRoomName = json.optString("roomName")
 
-
                 val destInfo1 = QNMediaRelayInfo(peerRoomName, pkOutline.relay_token)
                 configuration.addDestRoomInfo(destInfo1)
 
                 startMediaRelay(peerRoomName, room.mClient, configuration)
-
                 mPKDateSource.ackACKPk(mPKSession?.sessionId ?: "")
-
                 startTimeOutJob(timeoutTimestamp)
                 callBack?.onSuccess(pkSession)
             }

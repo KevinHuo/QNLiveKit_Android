@@ -98,7 +98,7 @@ class MainActivity : AppCompatActivity() {
         Thread {
             try {
                 val body = FormBody.Builder()
-                    .add("phone", "10086")
+                    .add("phone", "13141616035")
                     .add("smsCode", "8888")
                     .build()
                 val buffer = Buffer()

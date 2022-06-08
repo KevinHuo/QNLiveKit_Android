@@ -6,6 +6,7 @@
         <entry key="uikit/uikit-linkmic/main/res/layout/kit_item_linker.xml" value="0.1956521739130435" />
         <entry key="uikit/uikit-linkmic/src/main/res/drawable/kit_select_my_camare.xml" value="0.1255" />
         <entry key="uikit/uikit-linkmic/src/main/res/drawable/kit_select_seat_mic.xml" value="0.1265" />
+        <entry key="uikit/uikit-linkmic/src/main/res/layout/kit_view_linkers.xml" value="0.1703125" />
       </map>
     </option>
   </component>
