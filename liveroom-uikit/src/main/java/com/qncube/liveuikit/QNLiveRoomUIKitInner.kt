@@ -31,7 +31,7 @@ internal object QNLiveRoomUIKitInner {
                 e.printStackTrace()
             }
         }
-        RoomPullActivity.start(context, liveRoomId, callBack)
+      //  RoomPullActivity.start(context, liveRoomId, callBack)
     }
 
     fun createAndJoinRoom(context: Context, callBack: QNLiveCallBack<QNLiveRoomInfo>?) {

@@ -39,10 +39,10 @@ class MicSeatView : LinearLayout {
         sfLp.height = LinkerUIHelper.uiMicHeight
         itemView.flSurfaceContainer.layoutParams = sfLp
 
-        val llLp =
-            itemView.flSurfaceContainer.layoutParams as LinearLayout.LayoutParams
-        llLp.marginEnd = LinkerUIHelper.micRightUIMargin
-        itemView.flSurfaceContainer.layoutParams = llLp
+//        val llLp =
+//            itemView.flSurfaceContainer.layoutParams as LinearLayout.LayoutParams
+      //  llLp.marginEnd = LinkerUIHelper.micRightUIMargin
+      //  itemView.flSurfaceContainer.layoutParams = llLp
 
 
         addView(itemView)

@@ -1,6 +1,7 @@
 package com.qncube.uikitlinkmic
 
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
+import com.niucube.qnrtcsdk.RoundTextureView
 import com.qiniu.droid.rtc.QNConnectionState
 import com.qiniu.droid.rtc.QNTextureView
 import com.qncube.linkmicservice.QNAnchorHostMicLinker
@@ -18,13 +20,13 @@ import com.qncube.linkmicservice.QNLinkMicService
 import com.qncube.linkmicservice.QNMicLinker
 import com.qncube.liveroomcore.*
 import com.qncube.uikitcore.*
+import com.qncube.uikitcore.ext.ViewUtil
 import kotlinx.android.synthetic.main.kit_view_linkers.view.*
 
 /**
  * 连麦槽位
  */
 class LinkerSlot : QNInternalViewSlot() {
-
 
     /**
      * 内置槽位 设置 点击事件回调
@@ -48,7 +50,7 @@ class LinkerSlot : QNInternalViewSlot() {
 }
 
 class MicLinkerView : BaseSlotView() {
-    
+
     private val linkService get() = client!!.getService(QNLinkMicService::class.java)!!
     var mClickCallback: QNViewClickSlot<QNMicLinker>? = null
 
@@ -59,8 +61,8 @@ class MicLinkerView : BaseSlotView() {
                     ?.onClick(view)
             }
         }
-    private val mMicLinkerListener = object : QNLinkMicService.MicLinkerListener {
 
+    private val mMicLinkerListener = object : QNLinkMicService.MicLinkerListener {
         override fun onInitLinkers(linkers: MutableList<QNMicLinker>) {
             Log.d("LinkerSlot", " 同步麦位${linkers.size}")
             val lcs = linkers.filter {
@@ -81,10 +83,9 @@ class MicLinkerView : BaseSlotView() {
         override fun onUserLeft(micLinker: QNMicLinker) {
             Log.d("LinkerSlot", " onUserLeft 有人下麦 ${micLinker.user.nick}")
             val index = mLinkerAdapter.indexOf(micLinker)
-            removePreview(index,micLinker)
+            removePreview(index, micLinker)
             mLinkerAdapter.remove(index)
         }
-
 
         override fun onUserMicrophoneStatusChange(micLinker: QNMicLinker) {
             val index = mLinkerAdapter.indexOf(micLinker)
@@ -94,7 +95,7 @@ class MicLinkerView : BaseSlotView() {
         override fun onUserCameraStatusChange(micLinker: QNMicLinker) {
             val index = mLinkerAdapter.indexOf(micLinker)
             mLinkerAdapter.notifyItemChanged(index)
-             view!!.mMicSeatView.convertItem(index, micLinker)
+            view!!.mMicSeatView.convertItem(index, micLinker)
         }
 
         override fun onUserBeKick(micLinker: QNMicLinker, msg: String) {
@@ -115,13 +116,8 @@ class MicLinkerView : BaseSlotView() {
     }
 
     private val mQNAudienceMicLinker = object : QNAudienceMicLinker.LinkMicListener {
-        /**
-         * 连麦模式连接状态
-         * 连接成功后 连麦器会主动禁用推流器 改用rtc
-         * @param state
-         */
-        override fun onConnectionStateChanged(state: QNConnectionState) {
 
+        override fun onConnectionStateChanged(state: QNConnectionState) {
         }
 
         /**
@@ -137,7 +133,7 @@ class MicLinkerView : BaseSlotView() {
             } else {
                 client?.getService(QNLinkMicService::class.java)?.allLinker?.forEach {
                     Log.d("LinkerSlot", "  zb移除窗口 ${it.user.nick}")
-                    removePreview(mLinkerAdapter.indexOf(it),it)
+                    removePreview(mLinkerAdapter.indexOf(it), it)
                 }
             }
         }
@@ -175,7 +171,7 @@ class MicLinkerView : BaseSlotView() {
     private fun addLinkerPreview(micLinker: QNMicLinker) {
         if (micLinker.user.userId != roomInfo?.anchorInfo?.userId) {
             Log.d("LinkerSlot", "  添加窗口用户")
-             view!!.mMicSeatView.addItemView(micLinker, linkService)
+            view!!.mMicSeatView.addItemView(micLinker, linkService)
 
         } else {
             Log.d("LinkerSlot", "  添加窗口房主")
@@ -195,7 +191,7 @@ class MicLinkerView : BaseSlotView() {
     private fun removePreview(index: Int, micLinker: QNMicLinker) {
         if (micLinker.user.userId != roomInfo?.anchorInfo?.userId) {
             Log.d("LinkerSlot", "  移除窗口${micLinker.user.nick}")
-             view!!.mMicSeatView.removeItem(index)
+            view!!.mMicSeatView.removeItem(index)
         } else {
             Log.d("LinkerSlot", "  移除窗口房主")
             view!!.flAnchorSurfaceCotiner.removeAllViews()
@@ -214,14 +210,11 @@ class MicLinkerView : BaseSlotView() {
 
     private fun init() {
         LinkerUIHelper.attachUIWidth(view!!.flLinkContent.width, view!!.flLinkContent.height)
-
         val rcLp: FrameLayout.LayoutParams =
             view!!.recyLinker.layoutParams as FrameLayout.LayoutParams
         rcLp.topMargin = LinkerUIHelper.uiTopMargin
-
         val rcSurfaceLp = view!!.mMicSeatView.layoutParams as FrameLayout.LayoutParams
         rcSurfaceLp.topMargin = LinkerUIHelper.uiTopMargin
-        
         mLinkerAdapter.bindToRecyclerView(view!!.recyLinker)
     }
 
@@ -260,5 +253,4 @@ class MicLinkerView : BaseSlotView() {
         }
         client.getService(QNLinkMicService::class.java).addMicLinkerListener(mMicLinkerListener)
     }
-
 }

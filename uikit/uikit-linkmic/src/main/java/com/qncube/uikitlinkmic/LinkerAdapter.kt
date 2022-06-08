@@ -25,10 +25,10 @@ class LinkerAdapter() :
         sfLp.height = LinkerUIHelper.uiMicHeight
         helper.itemView.tempSurfaceContainer.layoutParams = sfLp
 
-        val llLp: FrameLayout.LayoutParams =
-            helper.itemView.llContiner.layoutParams as FrameLayout.LayoutParams
-        llLp.marginEnd = LinkerUIHelper.micRightUIMargin
-        helper.itemView.llContiner.layoutParams = llLp
+//        val llLp: FrameLayout.LayoutParams =
+//            helper.itemView.llContiner.layoutParams as FrameLayout.LayoutParams
+//        llLp.marginEnd = LinkerUIHelper.micRightUIMargin
+//        helper.itemView.llContiner.layoutParams = llLp
         return helper
     }
 

@@ -9,6 +9,7 @@ import com.nucube.rtclive.CameraMergeOption
 import com.nucube.rtclive.MicrophoneMergeOption
 import com.nucube.rtclive.MixStreamParams
 import com.nucube.rtclive.QNMergeOption
+import com.pili.pldroid.player.widget.PLVideoView
 import com.qbcube.pkservice.QNPKService
 import com.qbcube.pkservice.QNPKSession
 import com.qiniu.droid.rtc.QNTextureView

@@ -38,7 +38,7 @@ object LinkerUIHelper {
     /**
      * UI
      */
-    var micRightUIMargin = 0
+   // var micRightUIMargin = 0
 
     var containerWidth = 0
     var containerHeight = 0
@@ -60,7 +60,7 @@ object LinkerUIHelper {
             uiMicHeight = (mixMicHeight * ratio).toInt()
             uiTopMargin = (mixTopMargin * ratio - (mixHeight * ratio - containerHeight) / 2).toInt()
             micBottomUIMargin = (micBottomMixMargin * ratio).toInt()
-            micRightUIMargin = (micRightMixMargin * ratio).toInt()
+          //  micRightUIMargin = (micRightMixMargin * ratio).toInt()
 
         } else {
             //视频太矮
@@ -70,7 +70,7 @@ object LinkerUIHelper {
             uiMicHeight = (mixMicHeight * ratio).toInt()
             uiTopMargin = (mixTopMargin * ratio).toInt()
             micBottomUIMargin = (micBottomMixMargin * ratio).toInt()
-            micRightUIMargin = 0
+          //  micRightUIMargin = 0
         }
     }
 
