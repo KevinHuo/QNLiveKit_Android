@@ -44,7 +44,7 @@ val client = QLive.createPullerClient();
 client.setPlayer(findViewById(R.id.QPLPlayer));
  
 //注册客户端监听
-client.setClientEventListener(object : QPullClientListener{});
+client.setClientEventListener(object: QClientEventListener{})
  
 //加入房间
 client.joinRoom( roomId, object : QLiveCallBack<QLiveRoomInfo> {
@@ -81,27 +81,27 @@ roomUIKit = QLive.createLiveRoomUIKit();
 
 val roomComponentsTable = roomUIKit.getRoomComponentsTable();
 //每个内置UI组件都可以配置自己的替换实现
-roomComponentTable.mXXXComponent.setReplaceView(CustomView.Class);
+roomComponentsTable.mXXXComponent.setReplaceView(CustomView.Class);
            
 //每个内置UI组件都可以禁用
-roomComponentTable.mXXXComponent.setIsEnable(false);
+roomComponentsTable.mXXXComponent.setIsEnable(false);
            
 //如果使用使用某个槽位 每个UI组件可以定制样式
-roomComponentTable.mRoomNoticeComponent.showNoticeCall={ notice->
+roomComponentsTable.mRoomNoticeComponent.showNoticeCall={ notice->
     //比如定制公告颜色和文字
     "<font color='#ffffff'> 今天的公告: ${notice}</font>"
 }
 
 //自定义主播头像点击事件
-roomComponentTable.mRoomHostComponent.clickCall=
-    object: ViewClickWrap<QLiveUser> { kitContext, client, itemData:QLiveUser,view ->           
+roomComponentsTable.mRoomHostComponent.clickCall=
+    object: ViewClickWrap<QLiveUser> { kitContext, client, user:QLiveUser,view ->           
      //跳转到主播主页
-     主播ID  -> itemData.uid
-     主播头像 -> itemData.avatar              
+     // 主播ID  -> user.uid
+     // 主播头像 -> user.avatar              
    }       
      
 //插入全局覆盖层
-roomComponentTable.mOuterCoverComponent.setReplaceView(CustomView::clas.java)
+roomComponentsTable.mOuterCoverComponent.setReplaceView(CustomView::clas.java)
    
 //跳转到直播列表页面
 roomUIKit.launch(context);
@@ -152,8 +152,8 @@ class QLiveUser {
 ## 主播观众客户端
 
 ```java
-class QPusherClient {  
-    <T extends QLiveService> registerService(Class<T> serviceClass);             //注册用户需要的服务
+class QPusherClient {
+    void registerService(List<Class<? extends QNLiveService>> serviceClass);     //注册用户需要的服务
     <T extends QLiveService> T getService(Class<T> serviceClass);                //获得插件服务
     void setClientEventListener(QClientEventListener clientListener);              //房间事件监听
     void joinRoom( String roomId, QLiveCallBack<QLiveRoomInfo> callBack);                //加入房间
@@ -172,7 +172,7 @@ class QPusherClient {
 }
 
 class QPlayerClient {
-    <T extends QLiveService> registerService(Class<T> serviceClass);             //注册用户需要的服务
+    void registerService(List<Class<? extends QNLiveService>> serviceClass);     //注册用户需要的服务
     <T extends QLiveService> T getService(Class<T> serviceClass);                //获得插件服务
     void setClientEventListener(QClientEventListener clientListener);              //房间事件监听
     void joinRoom( String roomId, QLiveCallBack<QLiveRoomInfo> callBack);                //加入房间

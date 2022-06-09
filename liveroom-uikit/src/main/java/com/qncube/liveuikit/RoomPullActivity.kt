@@ -50,6 +50,7 @@ class RoomPullActivity : BaseFrameActivity() {
     private var mRoomId = ""
     private val mRoomClient by lazy {
         QNLivePullClient.createLivePullClient().apply {
+
             registerService(
                 QNChatRoomService::class.java,
             )
