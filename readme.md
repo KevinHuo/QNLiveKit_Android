@@ -1,6 +1,6 @@
 ## exmaple:
 
-```
+```kotlin
 无UI
 //初始化
 QLive.init(context ,token)
@@ -64,8 +64,7 @@ client.destroy()
 
 
 
-
-```
+```kotlin
 //UIKIT
 //初始化
 QLive.init(context ,token)
@@ -76,11 +75,11 @@ QLive.updateUserInfo(
              put("vip","1") //自定义vip等级
              put("level","22")//扩展用户等级
           },
-         object : QLiveCallBack<QLiveUser>{} ）
+         object : QLiveCallBack<QLiveUser>{});
 //配置UI (可选)
 roomUIKit = QLive.createLiveRoomUIKit()
 
-RoomComponentTable roomComponentTable = roomUIKit.mRoomComponentTable
+val roomComponentTable = roomUIKit.getRoomComponentTable()
 //每个内置UI组件都可以配置自己的替换实现
 roomComponentTable.mXXXComponent.setReplaceView(CustomView.Class)
            
@@ -95,7 +94,7 @@ roomComponentTable.mRoomNoticeComponent.showNoticeCall={ notice->
 
 //自定义主播头像点击事件
 roomComponentTable.mRoomHostComponent.clickCall=
-    new ViewClickWrap<QLiveUser> { kitContext, client, itemData:QLiveUser,view ->           
+    object: ViewClickWrap<QLiveUser> { kitContext, client, itemData:QLiveUser,view ->           
      //跳转到主播主页
      主播ID  -> itemData.uid
      主播头像 -> itemData.avatar              
@@ -123,9 +122,8 @@ addView(roomListView)
 
 
 
-
 ## 初始化
-```
+```java
 class QLive {
     static init(Context context, String token, QLiveCallBack<Void> callBack)  // 初始化
     static updateUserInfo(String avatar, String nickName, HashMap<String,String> extensions ,QLiveCallBack<QLiveUser> callBack) //绑定用户信息
@@ -153,7 +151,7 @@ class QLiveUser {
 
 ## 主播观众客户端
 
-```
+```java
 class QPusherClient {  
     <T extends QLiveService> registerService(Class<T> serviceClass)             //注册用户需要的服务
     <T extends QLiveService> T getService(Class<T> serviceClass)                //获得插件服务
@@ -256,7 +254,7 @@ class QLiveRoomInfo {
 
 ### 混流参数
 
-```
+```java
 class QMergeOption {
     uid: String 
     CameraMergeOption  cameraMergeOption
@@ -281,7 +279,7 @@ class QMergeOption {
 
 ## QLiveService
 
-```
+```java
 interface QLinkMicService extends QLiveService {
    void removeServiceListener(QLinkMicServiceListener listener)
    void addServiceListener(QLinkMicServiceListener listener)
@@ -323,7 +321,7 @@ class QAudienceMicLinker{
 ```
 
 
-```
+```java
 interface QPKService extends QLiveService{
     void removeServiceListener(QPKServiceListener pkServiceListener)
     void addServiceListener(QPKServiceListener pkServiceListener)
@@ -351,7 +349,7 @@ interface QPKMixStreamAdapter{
 
 ```
 
-```
+```java
 class QInvitationHandler{
     void apply(expiration: Long, receiverRoomId: String, receiverUid: String, extensions: HashMap<String,String>,callBack: QLiveCallBack<QInvitation>)
     void cancelApply(invitationId: Int,callBack: QLiveCallBack<Void>)
@@ -379,7 +377,7 @@ class QInvitation{
 }
 ```
 
-```
+```java
 interface QChatRoomService extends QLiveService {
      void removeServiceListener(QChatRoomServiceListener chatServiceListener)
      void addServiceListener(QChatRoomServiceListener chatServiceListener)
@@ -403,7 +401,7 @@ interface QChatRoomServiceListener{
 }
 ```
 
-```
+```java
 interface QRoomService
     void removeServiceListener(QRoomServiceListener listener)
     void addServiceListener(QRoomServiceListener listener)
@@ -424,7 +422,7 @@ interface QRoomServiceListener{
 }
 ```
 
-```
+```java
 interface QPublicChatService extends QLiveService{
      void addServiceLister(QPublicChatServiceLister lister);
      void removeServiceLister(QPublicChatServiceLister lister);
