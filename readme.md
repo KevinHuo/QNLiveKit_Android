@@ -5,13 +5,16 @@
 //初始化
 QLive.init(context ,token);
 QLive.updateUserInfo(
-         "your avatar",
-         "your nickname",
-         HashMap<String, String>().apply {
-             put("vip","1"); //自定义vip等级
-             put("level","22");//扩展用户等级
-          },
-         object : QLiveCallBack<QLiveUser>{} );
+    "your avatar",
+    "your nickname",
+    HashMap<String, String>().apply {
+        put("vip","1"); //自定义vip等级
+        put("level","22");//扩展用户等级
+    },
+    object : QLiveCallBack<Void>{
+        override fun onSuccess(data: Void) {}
+        override fun onError(code: Int, msg: String) {}
+    });
  
 // 主播推流
 //创建推流client
@@ -75,7 +78,10 @@ QLive.updateUserInfo(
              put("vip","1"); //自定义vip等级
              put("level","22");//扩展用户等级
           },
-         object : QLiveCallBack<QLiveUser>{});
+         object : QLiveCallBack<Void>{
+             override fun onSuccess(data: Void) {}
+             override fun onError(code: Int, msg: String) {}
+         });
 //配置UI (可选);
 roomUIKit = QLive.createLiveRoomUIKit();
 
@@ -126,7 +132,7 @@ addView(roomListView);
 ```java
 class QLive {
     static init(Context context, String token, QLiveCallBack<Void> callBack);  // 初始化
-    static updateUserInfo(String avatar, String nickName, HashMap<String,String> extensions ,QLiveCallBack<QLiveUser> callBack); //绑定用户信息
+    static updateUserInfo(String avatar, String nickName, HashMap<String,String> extensions ,QLiveCallBack<Void> callBack); //绑定用户信息
     static QPusherClient createPusherClient();                                 //创建主播端
     static QPlayerClient createPlayerClient();                                 //创建观众端
     static QLiveRoomUIKit createLiveRoomUIKit();                               //创建uikit
@@ -137,15 +143,6 @@ class QLiveRoomUIKit{
     RoomComponentsTable getRoomComponentsTable();                                //房间页面的组件表
     static void launch(Context context);                                       //启动 跳转直播列表页面
 }
-
-class QLiveUser {
-    String userId;
-    String avatar;
-    String nick;
-    Map<String,String> extensions; //扩展字段
-    String imUid;
-}
-
 ```
 
 
@@ -182,11 +179,8 @@ class QPlayerClient {
     void setPlayer(IPullPlayer player);                                      //绑定播放器
     IPullPlayer getPlayer();
 }
-  
-
 
 interface QRoomEventListener {
- 
     void onRoomEntering(String roomId,QLiveUser user);                         //正在加入房间
     void onRoomJoined(QRoomInfo roomInfo);                                     //加入了某个房间  
     void onRoomLeft();                                                          //离开了某个房间 
@@ -249,32 +243,13 @@ class QLiveRoomInfo {
     int anchorStatus;
 }
 
-```
-
-
-### 混流参数
-
-```java
-class QMergeOption {
-    String uid;
-    CameraMergeOption  cameraMergeOption;
-    MicrophoneMergeOption microphoneMergeOption;
- 
-    class CameraMergeOption  {
-       boolean isNeed = true;
-       int mX = 0;
-       int mY = 0;
-       int mZ = 0;
-       int mWidth = 0;
-       int mHeight = 0;
-       QRenderMode mStretchMode;
-     }
- 
-    class MicrophoneMergeOption  {
-       boolean isNeed ;
-    }
+class QLiveUser {
+    String userId;
+    String avatar;
+    String nick;
+    Map<String,String> extensions; //扩展字段
+    String imUid;
 }
-
 ```
 
 ## QLiveService
@@ -374,6 +349,27 @@ class QInvitation{
      String receiverRoomId;
      HashMap<String,String> extensions;
      int linkType;
+}
+```
+```java
+class QMergeOption {
+    String uid;
+    CameraMergeOption  cameraMergeOption;
+    MicrophoneMergeOption microphoneMergeOption;
+ 
+    class CameraMergeOption  {
+       boolean isNeed = true;
+       int mX = 0;
+       int mY = 0;
+       int mZ = 0;
+       int mWidth = 0;
+       int mHeight = 0;
+       QRenderMode mStretchMode;
+     }
+ 
+    class MicrophoneMergeOption  {
+       boolean isNeed ;
+    }
 }
 ```
 
