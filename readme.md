@@ -391,7 +391,7 @@ interface QChatRoomService extends QLiveService {
 
 interface QChatRoomServiceListener{
      void onUserJoin(String memberId);
-     void onUserLevel(String memberId);
+     void onUserLeft(String memberId);
      void onReceivedC2CMsg(String msg, String fromId, String toId);
      void onReceivedGroupMsg(String msg, String fromId, String toId);
      void onUserBeKicked(String memberId);
