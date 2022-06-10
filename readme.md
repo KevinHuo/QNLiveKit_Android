@@ -135,7 +135,7 @@ class QLive {
     static updateUser(QUserInfo userInfo ,QLiveCallBack<Void> callBack); //绑定用户信息
     static QPusherClient createPusherClient();                                 //创建主播端
     static QPlayerClient createPlayerClient();                                 //创建观众端
-    static QLiveUIKit create QLiveUIKit();                               //创建uikit
+    static QLiveUIKit createQLiveUIKit();                               //创建uikit
 }
 
 class QLiveUIKit{
