@@ -125,20 +125,26 @@ addView(roomListView);
 
 ```
 
-
+```java
+class QUserInfo {
+    String avatar;
+    String nickName;
+    HashMap<String,String> extensions;
+}
+```
 
 
 ## 初始化
 ```java
 class QLive {
     static init(Context context, String token, QLiveCallBack<Void> callBack);  // 初始化
-    static updateUserInfo(String avatar, String nickName, HashMap<String,String> extensions ,QLiveCallBack<Void> callBack); //绑定用户信息
+    static updateUser(QUserInfo userInfo ,QLiveCallBack<Void> callBack);       //绑定用户信息
     static QPusherClient createPusherClient();                                 //创建主播端
     static QPlayerClient createPlayerClient();                                 //创建观众端
-    static QLiveRoomUIKit createLiveRoomUIKit();                               //创建uikit
+    static QLiveUIKit createLiveUIKit();                                       //创建uikit
 }
 
-class QLiveRoomUIKit{
+class QLiveUIKit {
     RoomListComponent getRoomListComponent();                                  //房间列表组件
     RoomComponentsTable getRoomComponentsTable();                                //房间页面的组件表
     static void launch(Context context);                                       //启动 跳转直播列表页面
