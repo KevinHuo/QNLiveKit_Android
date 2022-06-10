@@ -131,7 +131,7 @@ addView(roomListView);
 ## 初始化
 ```java
 class QLive {
-    static init(Context context, String token, QLiveCallBack<Void> callBack);  // 初始化
+    static init(Context context, QTokenGetter tokenGetter, QLiveCallBack<Void> callBack);  // 初始化
     static updateUser(QUserInfo userInfo ,QLiveCallBack<Void> callBack); //绑定用户信息
     static QPusherClient createPusherClient();                                 //创建主播端
     static QPlayerClient createPlayerClient();                                 //创建观众端
